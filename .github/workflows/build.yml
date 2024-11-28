@@ -1,6 +1,8 @@
 name: Build and Tests
 
 on:
+  workflow_dispatch:
+
   push:
     branches:
       - main
@@ -57,4 +59,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -e -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=green-code-initiative_ecoCode-php
+        run: mvn -e -B org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=com.shell.ecoCode-php -Dsonar.token=${{ secrets.SONAR_TOKEN }} -Dsonar.host.url=${{ secrets.SONAR_HOST_URL }}
